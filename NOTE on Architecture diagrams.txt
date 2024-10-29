@@ -1,0 +1,1 @@
+Both the architecture diagrams are correct - each one provides a different view of the flow.

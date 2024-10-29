@@ -1,0 +1,30 @@
+Create an S3 bucket vinodknowledgebasebucket and upload the documents needed for the knowledge base
+
+Go to Amazon Bedrock - Knowledge bases - Create knowledge base: 
+Note: Knowledge Base creation with a root user is not supported. Please sign-in with an IAM user or IAM role and try again. I used lakeformation_admin IAM user.
+
+Create and use a new service role
+
+Choose Amazon S3 as the data source and select the S3 bucket created above.
+
+Used default chunking - automatically splits text into chunks of about 300 tokens.
+
+Use default KMS key to encrypt transient data storage
+
+Choose to delete or retain vector store data when the data source is deleted. I chose to delete.
+
+Choose an embeddings model to convert the data that you will provide in the next step, and provide details for a vector data store in which Bedrock can store, manage, and update your embeddings. The embeddings model and vector store cannot be changed after creation of knowledge base. I chose "Titan Text Embeddings v2" and the default "Qucik create a new vector store".
+Amaon will create an Amazon OpenSearch Serverless vector store on your behalf. 
+This cost-efficient option is intended only for development and can’t be migrated to production workload later.
+You can enable redundancy (active replicas) for the vector store and also customer-managed KMS key for Amazon Opensearch Serverless vector. I did not enable these.
+
+Create knowledge base
+
+Once the Knowledge base is created, sync the data source - this is where you update the amazon open search vector database with the S3 docs .. whenever a new doc is uploaded in the S3 bucket, you can perform the sync once.
+
+Now, test the Knowledge base. 
+I chose the Amazon "Titan Text G1 - Premier" model for the responses from the Knowledge base. 
+I tried options like:
+How many vcores does a t2.large instance have ?
+How do you send mails from Amazon Ec2 instances ? 
+Got good / relevant replies.

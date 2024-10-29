@@ -1,0 +1,8 @@
+Create lambda function - bedrockKnowledgeBaseFn.py - that invokes the Anthropic Claude text processing model.
+
+Test the lambda function by configuring the below key-value pair as a Test event:
+{
+  "prompt": "how many vcores does a t2.large instance have ?"
+}
+
+Ensure lambda function has bedrock access.
